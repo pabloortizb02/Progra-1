@@ -4,7 +4,7 @@
 
 using namespace std;
 
-// estructura fija para binario
+
 struct nodoEstudiante {
     int clave;
     char etiqueta[45];
