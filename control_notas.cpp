@@ -4,15 +4,20 @@
 
 using namespace std;
 
-
+// Estructura para manejar datos en archivo binario (tamaño fijo)
 struct nodoEstudiante {
     int clave;
     char etiqueta[45];
     float promedio;
 };
 
+// ----------------------
+// Guarda datos en archivo de texto
+// ----------------------
 void cargarTXT() {
-    ofstream flujoSalida("alumnos.txt", ios::app);
+    ofstream flujoSalida("alumnos.txt", ios::app); // modo append
+
+    // Verificar si abrió correctamente
     if (!flujoSalida.is_open()) {
         cout << "No se pudo acceder al archivo\n";
         return;
@@ -22,16 +27,24 @@ void cargarTXT() {
     string nombreAux;
     float notaAux;
 
+    // Captura de datos
     cout << "\nClave: "; cin >> claveAux;
     cout << "Nombre: "; cin >> nombreAux;
     cout << "Nota: "; cin >> notaAux;
 
+    // Escritura en archivo
     flujoSalida << claveAux << " " << nombreAux << " " << notaAux << endl;
-    flujoSalida.close();
+
+    flujoSalida.close(); // cerrar archivo
 }
 
+// ----------------------
+// Muestra todos los registros del TXT
+// ----------------------
 void desplegarTXT() {
     ifstream flujoEntrada("alumnos.txt");
+
+    // Validar archivo
     if (!flujoEntrada.good()) {
         cout << "Archivo no disponible\n";
         return;
@@ -43,6 +56,7 @@ void desplegarTXT() {
 
     cout << "\n--- REGISTROS ---\n";
 
+    // Lectura secuencial
     while (flujoEntrada >> claveAux >> nombreAux >> notaAux) {
         cout << claveAux << " | " << nombreAux << " | " << notaAux << endl;
     }
@@ -50,8 +64,12 @@ void desplegarTXT() {
     flujoEntrada.close();
 }
 
+// ----------------------
+// Busca un alumno por clave
+// ----------------------
 void localizarRegistro() {
     ifstream flujoEntrada("alumnos.txt");
+
     if (!flujoEntrada.is_open()) {
         cout << "Error de lectura\n";
         return;
@@ -66,6 +84,7 @@ void localizarRegistro() {
     float notaAux;
     bool existe = false;
 
+    // Recorre todo el archivo
     while (flujoEntrada >> claveAux >> nombreAux >> notaAux) {
         if (claveAux == ref) {
             cout << "Coincidencia -> " << nombreAux << " con " << notaAux << endl;
@@ -79,10 +98,14 @@ void localizarRegistro() {
     flujoEntrada.close();
 }
 
+// ----------------------
+// Actualiza datos usando archivo temporal
+// ----------------------
 void reescribirTXT() {
     ifstream original("alumnos.txt");
     ofstream respaldo("swap.txt");
 
+    // Validación de archivos
     if (!original.is_open() || !respaldo.is_open()) {
         cout << "Error en archivos\n";
         return;
@@ -96,6 +119,7 @@ void reescribirTXT() {
     string nombreAux;
     float notaAux;
 
+    // Copia todo al temporal (modificando si coincide)
     while (original >> claveAux >> nombreAux >> notaAux) {
         if (claveAux == objetivo) {
             cout << "Nuevo valor: ";
@@ -107,14 +131,19 @@ void reescribirTXT() {
     original.close();
     respaldo.close();
 
+    // Reemplazo del archivo original
     remove("alumnos.txt");
     rename("swap.txt", "alumnos.txt");
 
     cout << "Actualizacion aplicada\n";
 }
 
+// ----------------------
+// Guarda datos en archivo binario
+// ----------------------
 void persistirBinario() {
     ofstream archivo("alumnos.dat", ios::binary | ios::app);
+
     if (!archivo.good()) {
         cout << "Error creando binario\n";
         return;
@@ -122,6 +151,7 @@ void persistirBinario() {
 
     nodoEstudiante bloque;
 
+    // Captura de datos
     cout << "\nClave: ";
     cin >> bloque.clave;
 
@@ -131,12 +161,18 @@ void persistirBinario() {
     cout << "Nota: ";
     cin >> bloque.promedio;
 
+    // Escritura binaria
     archivo.write((char*)&bloque, sizeof(bloque));
+
     archivo.close();
 }
 
+// ----------------------
+// Acceso aleatorio (leer posición específica)
+// ----------------------
 void lecturaDirecta() {
     ifstream archivo("alumnos.dat", ios::binary);
+
     if (!archivo.is_open()) {
         cout << "Archivo no encontrado\n";
         return;
@@ -148,9 +184,13 @@ void lecturaDirecta() {
 
     nodoEstudiante bloque;
 
+    // Mover puntero a la posición deseada
     archivo.seekg(index * sizeof(bloque), ios::beg);
+
+    // Mostrar posición actual (detalle importante)
     cout << "Posicion actual (bytes): " << archivo.tellg() << endl;
 
+    // Leer registro
     archivo.read((char*)&bloque, sizeof(bloque));
 
     if (!archivo.fail()) {
@@ -164,8 +204,12 @@ void lecturaDirecta() {
     archivo.close();
 }
 
+// ----------------------
+// Recorre todo el archivo binario
+// ----------------------
 void barridoBinario() {
     ifstream archivo("alumnos.dat", ios::binary);
+
     if (!archivo.is_open()) {
         cout << "No hay datos binarios\n";
         return;
@@ -175,6 +219,7 @@ void barridoBinario() {
 
     cout << "\n--- BINARIO ---\n";
 
+    // Lectura secuencial del binario
     while (archivo.read((char*)&bloque, sizeof(bloque))) {
         cout << bloque.clave << " - "
              << bloque.etiqueta << " - "
@@ -184,6 +229,9 @@ void barridoBinario() {
     archivo.close();
 }
 
+// ----------------------
+// MENÚ PRINCIPAL
+// ----------------------
 int main() {
     int eleccion;
 
