@@ -1,0 +1,370 @@
+Last login: Thu Mar 19 07:44:35 on console
+pabloortiz@MacBook-Air-de-Pablo ~ % /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+==> Checking for `sudo` access (which may request your password)...
+Password:
+==> This script will install:
+/opt/homebrew/bin/brew
+/opt/homebrew/share/doc/homebrew
+/opt/homebrew/share/man/man1/brew.1
+/opt/homebrew/share/zsh/site-functions/_brew
+/opt/homebrew/etc/bash_completion.d/brew
+/opt/homebrew
+/etc/paths.d/homebrew
+==> The following new directories will be created:
+/opt/homebrew/bin
+/opt/homebrew/etc
+/opt/homebrew/include
+/opt/homebrew/lib
+/opt/homebrew/sbin
+/opt/homebrew/share
+/opt/homebrew/var
+/opt/homebrew/opt
+/opt/homebrew/share/zsh
+/opt/homebrew/share/zsh/site-functions
+/opt/homebrew/var/homebrew
+/opt/homebrew/var/homebrew/linked
+/opt/homebrew/Cellar
+/opt/homebrew/Caskroom
+/opt/homebrew/Frameworks
+
+Press RETURN/ENTER to continue or any other key to abort:
+==> /usr/bin/sudo /usr/bin/install -d -o root -g wheel -m 0755 /opt/homebrew
+==> /usr/bin/sudo /bin/mkdir -p /opt/homebrew/bin /opt/homebrew/etc /opt/homebrew/include /opt/homebrew/lib /opt/homebrew/sbin /opt/homebrew/share /opt/homebrew/var /opt/homebrew/opt /opt/homebrew/share/zsh /opt/homebrew/share/zsh/site-functions /opt/homebrew/var/homebrew /opt/homebrew/var/homebrew/linked /opt/homebrew/Cellar /opt/homebrew/Caskroom /opt/homebrew/Frameworks
+==> /usr/bin/sudo /bin/chmod ug=rwx /opt/homebrew/bin /opt/homebrew/etc /opt/homebrew/include /opt/homebrew/lib /opt/homebrew/sbin /opt/homebrew/share /opt/homebrew/var /opt/homebrew/opt /opt/homebrew/share/zsh /opt/homebrew/share/zsh/site-functions /opt/homebrew/var/homebrew /opt/homebrew/var/homebrew/linked /opt/homebrew/Cellar /opt/homebrew/Caskroom /opt/homebrew/Frameworks
+==> /usr/bin/sudo /bin/chmod go-w /opt/homebrew/share/zsh /opt/homebrew/share/zsh/site-functions
+==> /usr/bin/sudo /usr/sbin/chown pabloortiz /opt/homebrew/bin /opt/homebrew/etc /opt/homebrew/include /opt/homebrew/lib /opt/homebrew/sbin /opt/homebrew/share /opt/homebrew/var /opt/homebrew/opt /opt/homebrew/share/zsh /opt/homebrew/share/zsh/site-functions /opt/homebrew/var/homebrew /opt/homebrew/var/homebrew/linked /opt/homebrew/Cellar /opt/homebrew/Caskroom /opt/homebrew/Frameworks
+==> /usr/bin/sudo /usr/bin/chgrp admin /opt/homebrew/bin /opt/homebrew/etc /opt/homebrew/include /opt/homebrew/lib /opt/homebrew/sbin /opt/homebrew/share /opt/homebrew/var /opt/homebrew/opt /opt/homebrew/share/zsh /opt/homebrew/share/zsh/site-functions /opt/homebrew/var/homebrew /opt/homebrew/var/homebrew/linked /opt/homebrew/Cellar /opt/homebrew/Caskroom /opt/homebrew/Frameworks
+==> /usr/bin/sudo /usr/sbin/chown -R pabloortiz:admin /opt/homebrew
+==> Downloading and installing Homebrew...
+remote: Enumerating objects: 329238, done.
+remote: Counting objects: 100% (450/450), done.
+remote: Compressing objects: 100% (228/228), done.
+remote: Total 329238 (delta 313), reused 267 (delta 221), pack-reused 328788 (from 3)
+remote: Enumerating objects: 55, done.
+remote: Counting objects: 100% (33/33), done.
+remote: Total 55 (delta 33), reused 33 (delta 33), pack-reused 22 (from 1)
+==> /usr/bin/sudo /bin/mkdir -p /etc/paths.d
+==> /usr/bin/sudo tee /etc/paths.d/homebrew
+/opt/homebrew/bin
+==> /usr/bin/sudo /usr/sbin/chown root:wheel /etc/paths.d/homebrew
+==> /usr/bin/sudo /bin/chmod a+r /etc/paths.d/homebrew
+==> Updating Homebrew...
+==> Downloading https://ghcr.io/v2/homebrew/core/portable-ruby/blobs/sha256:f41c72b891c40623f9d5cd2135f58a1b8a5c014ae04149888289409316276c72
+################################################################################################################# 100.0%
+==> Pouring portable-ruby-4.0.2_1.arm64_big_sur.bottle.tar.gz
+==> Installation successful!
+
+==> Homebrew has enabled anonymous aggregate formulae and cask analytics.
+Read the analytics documentation (and how to opt-out) here:
+  https://docs.brew.sh/Analytics
+No analytics data has been sent yet (nor will any be during this install run).
+
+==> Homebrew is run entirely by unpaid volunteers. Please consider donating:
+  https://github.com/Homebrew/brew#donations
+
+==> Next steps:
+- Run these commands in your terminal to add Homebrew to your PATH:
+    echo >> /Users/pabloortiz/.zprofile
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv zsh)"' >> /Users/pabloortiz/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+- Run brew help to get started
+- Further documentation:
+    https://docs.brew.sh
+
+pabloortiz@MacBook-Air-de-Pablo ~ % echo >> /Users/pabloortiz/.zprofile
+pabloortiz@MacBook-Air-de-Pablo ~ % echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/pabloortiz/.zprofile
+pabloortiz@MacBook-Air-de-Pablo ~ % eval "$(/opt/homebrew/bin/brew shellenv)"
+pabloortiz@MacBook-Air-de-Pablo ~ % brew --version
+Homebrew 5.1.5
+pabloortiz@MacBook-Air-de-Pablo ~ % brew install mysql
+==> Fetching downloads for: mysql
+✔︎ Bottle Manifest mysql (9.6.0_2)                                                            Downloaded   29.0KB/ 29.0KB
+✔︎ Bottle Manifest icu4c@78 (78.3)                                                            Downloaded    9.7KB/  9.7KB
+✔︎ Bottle Manifest lz4 (1.10.0)                                                               Downloaded   13.8KB/ 13.8KB
+✔︎ Bottle Manifest ca-certificates (2026-03-19)                                               Downloaded    2.0KB/  2.0KB
+✔︎ Bottle Manifest openssl@3 (3.6.2)                                                          Downloaded   12.0KB/ 12.0KB
+✔︎ Bottle Manifest protobuf (34.1)                                                            Downloaded   10.7KB/ 10.7KB
+✔︎ Bottle Manifest xz (5.8.3)                                                                 Downloaded   11.8KB/ 11.8KB
+✔︎ Bottle Manifest zstd (1.5.7_1)                                                             Downloaded   13.2KB/ 13.2KB
+✔︎ Bottle Manifest abseil (20260107.1)                                                        Downloaded   63.0KB/ 63.0KB
+✔︎ Bottle Manifest zlib-ng-compat (2.3.3_1)                                                   Downloaded    7.3KB/  7.3KB
+✔︎ Bottle ca-certificates (2026-03-19)                                                        Downloaded  132.4KB/132.4KB
+✔︎ Bottle abseil (20260107.1)                                                                 Downloaded    1.9MB/  1.9MB
+✔︎ Bottle zlib-ng-compat (2.3.3_1)                                                            Downloaded  170.3KB/170.3KB
+✔︎ Bottle xz (5.8.3)                                                                          Downloaded  770.8KB/770.8KB
+✔︎ Bottle lz4 (1.10.0)                                                                        Downloaded  279.7KB/279.7KB
+✔︎ Bottle protobuf (34.1)                                                                     Downloaded    3.7MB/  3.7MB
+✔︎ Bottle zstd (1.5.7_1)                                                                      Downloaded  793.6KB/793.6KB
+✔︎ Bottle icu4c@78 (78.3)                                                                     Downloaded   31.8MB/ 31.8MB
+✔︎ Bottle openssl@3 (3.6.2)                                                                   Downloaded   10.9MB/ 10.9MB
+✔︎ Bottle mysql (9.6.0_2)                                                                     Downloaded   79.6MB/ 79.6MB
+==> Installing dependencies for mysql: abseil, icu4c@78, lz4, ca-certificates, openssl@3, protobuf, zlib-ng-compat, xz and zstd
+==> Installing mysql dependency: abseil
+==> Pouring abseil--20260107.1.arm64_tahoe.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/abseil/20260107.1: 806 files, 12.8MB
+==> Installing mysql dependency: icu4c@78
+==> Pouring icu4c@78--78.3.arm64_tahoe.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/icu4c@78/78.3: 279 files, 87.7MB
+==> Installing mysql dependency: lz4
+==> Pouring lz4--1.10.0.arm64_tahoe.bottle.1.tar.gz
+🍺  /opt/homebrew/Cellar/lz4/1.10.0: 24 files, 768.9KB
+==> Installing mysql dependency: ca-certificates
+==> Pouring ca-certificates--2026-03-19.all.bottle.tar.gz
+==> Regenerating CA certificate bundle from keychain, this may take a while...
+🍺  /opt/homebrew/Cellar/ca-certificates/2026-03-19: 4 files, 237.5KB
+==> Installing mysql dependency: openssl@3
+==> Pouring openssl@3--3.6.2.arm64_tahoe.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/openssl@3/3.6.2: 7,627 files, 37.6MB
+==> Installing mysql dependency: protobuf
+==> Pouring protobuf--34.1.arm64_tahoe.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/protobuf/34.1: 368 files, 17.4MB
+==> Installing mysql dependency: zlib-ng-compat
+==> Pouring zlib-ng-compat--2.3.3_1.arm64_tahoe.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/zlib-ng-compat/2.3.3_1: 17 files, 445.6KB
+==> Installing mysql dependency: xz
+==> Pouring xz--5.8.3.arm64_tahoe.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/xz/5.8.3: 96 files, 2.7MB
+==> Installing mysql dependency: zstd
+==> Pouring zstd--1.5.7_1.arm64_tahoe.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/zstd/1.5.7_1: 32 files, 2.3MB
+==> Installing mysql
+==> Pouring mysql--9.6.0_2.arm64_tahoe.bottle.tar.gz
+==> /opt/homebrew/Cellar/mysql/9.6.0_2/bin/mysqld --initialize-insecure --user=pabloortiz --basedir=/opt/homebrew/Cellar
+==> Caveats
+Upgrading from MySQL <8.4 to MySQL >9.0 requires running MySQL 8.4 first:
+ - brew services stop mysql
+ - brew install mysql@8.4
+ - brew services start mysql@8.4
+ - brew services stop mysql@8.4
+ - brew services start mysql
+
+We've installed your MySQL database without a root password. To secure it run:
+    mysql_secure_installation
+
+MySQL is configured to only allow connections from localhost by default
+
+To connect run:
+    mysql -u root
+
+To start mysql now and restart at login:
+  brew services start mysql
+Or, if you don't want/need a background service you can just run:
+  /opt/homebrew/opt/mysql/bin/mysqld_safe --datadir\=/opt/homebrew/var/mysql
+==> Summary
+🍺  /opt/homebrew/Cellar/mysql/9.6.0_2: 335 files, 306.7MB
+==> Running `brew cleanup mysql`...
+Disable this behaviour by setting `HOMEBREW_NO_INSTALL_CLEANUP=1`.
+Hide these hints with `HOMEBREW_NO_ENV_HINTS=1` (see `man brew`).
+==> Caveats
+==> mysql
+Upgrading from MySQL <8.4 to MySQL >9.0 requires running MySQL 8.4 first:
+ - brew services stop mysql
+ - brew install mysql@8.4
+ - brew services start mysql@8.4
+ - brew services stop mysql@8.4
+ - brew services start mysql
+
+We've installed your MySQL database without a root password. To secure it run:
+    mysql_secure_installation
+
+MySQL is configured to only allow connections from localhost by default
+
+To connect run:
+    mysql -u root
+
+To start mysql now and restart at login:
+  brew services start mysql
+Or, if you don't want/need a background service you can just run:
+  /opt/homebrew/opt/mysql/bin/mysqld_safe --datadir\=/opt/homebrew/var/mysql
+pabloortiz@MacBook-Air-de-Pablo ~ % brew services start mysql
+==> Successfully started `mysql` (label: homebrew.mxcl.mysql)
+pabloortiz@MacBook-Air-de-Pablo ~ % brew install mysql-connector-c++
+==> Fetching downloads for: mysql-connector-c++
+✔︎ Bottle Manifest mysql-connector-c++ (9.6.0)                                                Downloaded   12.1KB/ 12.1KB
+✔︎ Bottle mysql-connector-c++ (9.6.0)                                                         Downloaded  852.4KB/852.4KB
+==> Pouring mysql-connector-c++--9.6.0.arm64_tahoe.bottle.1.tar.gz
+🍺  /opt/homebrew/Cellar/mysql-connector-c++/9.6.0: 43 files, 3.6MB
+==> Running `brew cleanup mysql-connector-c++`...
+Disable this behaviour by setting `HOMEBREW_NO_INSTALL_CLEANUP=1`.
+Hide these hints with `HOMEBREW_NO_ENV_HINTS=1` (see `man brew`).
+pabloortiz@MacBook-Air-de-Pablo ~ % mysql -u root
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 9.6.0 Homebrew
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> CREATE DATABASE test_cpp;
+Query OK, 1 row affected (0.005 sec)
+
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> USE test_cpp;
+Database changed
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> CREATE TABLE usuarios (
+    ->     id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     nombre VARCHAR(50),
+    ->     edad INT
+    -> );
+Query OK, 0 rows affected (0.007 sec)
+
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> INSERT INTO usuarios (nombre, edad)
+    -> VALUES ('Pablo', 20), ('Ana', 22);
+Query OK, 2 rows affected (0.006 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> SELECT * FROM usuarios;
++----+--------+------+
+| id | nombre | edad |
++----+--------+------+
+|  1 | Pablo  |   20 |
+|  2 | Ana    |   22 |
++----+--------+------+
+2 rows in set (0.001 sec)
+
+mysql> exit
+Bye
+pabloortiz@MacBook-Air-de-Pablo ~ % nano main.cpp
+pabloortiz@MacBook-Air-de-Pablo ~ % g++ main.cpp -o app \
+-I/opt/homebrew/include \
+-L/opt/homebrew/lib \
+-lmysqlcppconn
+main.cpp:2:10: fatal error: 'mysql_driver.h' file not found
+    2 | #include <mysql_driver.h>
+      |          ^~~~~~~~~~~~~~~~
+1 error generated.
+pabloortiz@MacBook-Air-de-Pablo ~ % 
+pabloortiz@MacBook-Air-de-Pablo ~ % 
+pabloortiz@MacBook-Air-de-Pablo ~ % 
+pabloortiz@MacBook-Air-de-Pablo ~ % 
+pabloortiz@MacBook-Air-de-Pablo ~ % brew --prefix mysql-connector-c++
+/opt/homebrew/opt/mysql-connector-c++
+pabloortiz@MacBook-Air-de-Pablo ~ % g++ main.cpp -o app \
+-I/opt/homebrew/opt/mysql-connector-c++/include \
+-L/opt/homebrew/opt/mysql-connector-c++/lib \
+-lmysqlcppconn
+main.cpp:2:10: fatal error: 'mysql_driver.h' file not found
+    2 | #include <mysql_driver.h>
+      |          ^~~~~~~~~~~~~~~~
+1 error generated.
+pabloortiz@MacBook-Air-de-Pablo ~ % 
+pabloortiz@MacBook-Air-de-Pablo ~ % 
+pabloortiz@MacBook-Air-de-Pablo ~ % 
+pabloortiz@MacBook-Air-de-Pablo ~ % 
+pabloortiz@MacBook-Air-de-Pablo ~ % 
+pabloortiz@MacBook-Air-de-Pablo ~ % 
+pabloortiz@MacBook-Air-de-Pablo ~ % nano main.cpp
+pabloortiz@MacBook-Air-de-Pablo ~ % 
+pabloortiz@MacBook-Air-de-Pablo ~ % 
+pabloortiz@MacBook-Air-de-Pablo ~ % 
+pabloortiz@MacBook-Air-de-Pablo ~ % 
+pabloortiz@MacBook-Air-de-Pablo ~ % 
+pabloortiz@MacBook-Air-de-Pablo ~ % nano main.cpp
+pabloortiz@MacBook-Air-de-Pablo ~ % g++ main.cpp -o app \
+-I/opt/homebrew/opt/mysql-connector-c++/include \
+-L/opt/homebrew/opt/mysql-connector-c++/lib \
+-lmysqlcppconn
+ld: library 'mysqlcppconn' not found
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+pabloortiz@MacBook-Air-de-Pablo ~ % g++ main.cpp -o app \
+-I/opt/homebrew/include \
+-L/opt/homebrew/lib \
+-lmysqlcppconnx
+pabloortiz@MacBook-Air-de-Pablo ~ %     ./app
+ID: 1 | Nombre: Pablo | Edad: 20
+ID: 2 | Nombre: Ana | Edad: 22
+pabloortiz@MacBook-Air-de-Pablo ~ % g++ main.cpp -o app \
+-I/opt/homebrew/include \
+-L/opt/homebrew/lib \
+-lmysqlcppconnx
+pabloortiz@MacBook-Air-de-Pablo ~ % ./app
+ID: 1 | Nombre: Pablo | Edad: 20
+ID: 2 | Nombre: Ana | Edad: 22
+pabloortiz@MacBook-Air-de-Pablo ~ % mysql -u root                    
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 9.6.0 Homebrew
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> INSERT INTO usuarios (nombre, edad)
+    -> VALUES ('Juao', 24), ('Maria', 22);
+ERROR 1046 (3D000): No database selected
+mysql> 
+mysql> 
+mysql> VALUES ('Pablo', 20), ('Ana', 22);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '('Pablo', 20), ('Ana', 22)' at line 1
+mysql> INSERT INTO usuarios (nombre, edad)
+    -> VALUES ('Juao', 24), ('Maria', 22);
+ERROR 1046 (3D000): No database selected
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> use test_cpp;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> INSERT INTO usuarios (nombre, edad)
+    -> VALUES ('Juao', 24), ('Maria', 22);
+Query OK, 2 rows affected (0.002 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM usuarios;
++----+--------+------+
+| id | nombre | edad |
++----+--------+------+
+|  1 | Pablo  |   20 |
+|  2 | Ana    |   22 |
+|  3 | Juao   |   24 |
+|  4 | Maria  |   22 |
++----+--------+------+
+4 rows in set (0.000 sec)
+
+mysql> 
