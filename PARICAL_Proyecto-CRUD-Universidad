@@ -3,9 +3,6 @@
 #include <string>
 #include <vector>
 
-// Eliminamos los "using namespace" globales para evitar la ambigüedad
-// O puedes mantenerlos pero especificando std::string donde se use.
-
 using namespace std;
 using namespace mysqlx;
 
