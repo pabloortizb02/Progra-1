@@ -1,0 +1,82 @@
+#include <iostream>
+
+using namespace std;
+
+struct Nodo {
+    int dato;
+    Nodo* siguiente;
+};
+
+void mostrarLista(Nodo* cabeza) {
+    if (cabeza == nullptr) {
+        cout << "La lista está vacía." << endl;
+        return;
+    }
+
+    cout << "\nContenido de la lista:\n";
+    Nodo* actual = cabeza;
+    while (actual != nullptr) {
+        if (actual->siguiente != nullptr) {
+            cout << "[" << actual->dato << " | * ] -> ";
+        } else {
+            cout << "[" << actual->dato << " | NULL]";
+        }
+        actual = actual->siguiente;
+    }
+    cout << endl;
+}
+
+void liberarMemoria(Nodo* &cabeza) {
+    Nodo* actual = cabeza;
+    while (actual != nullptr) {
+        Nodo* siguienteNodo = actual->siguiente;
+        delete actual;
+        actual = siguienteNodo;
+    }
+    cabeza = nullptr;
+}
+
+int main() {
+    setlocale(LC_ALL, "es_ES.UTF-8");
+
+    Nodo* cabeza = nullptr;
+    Nodo* ultimo = nullptr;
+    char opcion;
+
+    cout << "--- Registro de Datos en Lista Enlazada ---" << endl;
+
+    do {
+        cout << "\n¿Desea ingresar un nuevo valor? (S/N): ";
+        cin >> opcion;
+        cin.ignore(10000, '\n');
+
+        if (opcion == 'S' || opcion == 's') {
+            int valor;
+            cout << "Ingrese el valor entero: ";
+            cin >> valor;
+
+            Nodo* nuevoNodo = new Nodo();
+            nuevoNodo->dato = valor;
+            nuevoNodo->siguiente = nullptr;
+
+            if (cabeza == nullptr) {
+                cabeza = nuevoNodo;
+                ultimo = nuevoNodo;
+            } else {
+                ultimo->siguiente = nuevoNodo;
+                ultimo = nuevoNodo;
+            }
+
+        } else if (opcion != 'N' && opcion != 'n') {
+            cout << "Opción no válida. Use S o N." << endl;
+        }
+
+    } while (opcion != 'N' && opcion != 'n');
+
+    mostrarLista(cabeza);
+    liberarMemoria(cabeza);
+    
+    cout << "\nMemoria dinámica liberada correctamente. Programa terminado." << endl;
+
+    return 0;
+}
