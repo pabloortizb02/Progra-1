@@ -1,0 +1,126 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Alumno {
+private:
+    string nombres;
+    string apellidos;
+    string carnet;
+    string email;
+    string telefono;
+    float notas[5];
+
+public:
+    void leerDatos() {
+        cout << "Nombres: ";
+        getline(cin, nombres);
+        cout << "Apellidos: ";
+        getline(cin, apellidos);
+        cout << "Carnet: ";
+        getline(cin, carnet);
+        cout << "Email: ";
+        getline(cin, email);
+        cout << "Teléfono: ";
+        getline(cin, telefono);
+
+        for (int i = 0; i < 5; i++) {
+            float nota;
+            do {
+                cout << "Ingrese la nota " << (i + 1) << " (0 a 10): ";
+                cin >> nota;
+                if (nota < 0 || nota > 10) {
+                    cout << "Nota inválida. Debe estar entre 0 y 10." << endl;
+                }
+            } while (nota < 0 || nota > 10);
+            notas[i] = nota;
+        }
+        cin.ignore(10000, '\n');
+    }
+
+    float calcularPromedio() const {
+        float suma = 0;
+        for (int i = 0; i < 5; i++) {
+            suma += notas[i];
+        }
+        return suma / 5.0;
+    }
+
+    void mostrarInformacion() const {
+        cout << "------------------------------------------" << endl;
+        cout << "Alumno: " << nombres << " " << apellidos << endl;
+        cout << "Carnet: " << carnet << endl;
+        cout << "Email: " << email << endl;
+        cout << "Teléfono: " << telefono << endl;
+        cout << "Notas: ";
+        for (int i = 0; i < 5; i++) {
+            cout << "[" << notas[i] << "] ";
+        }
+        cout << "\nPromedio: " << calcularPromedio() << endl;
+    }
+};
+
+class Nodo {
+public:
+    Alumno alumno;
+    Nodo* siguiente;
+
+    Nodo(Alumno objAlumno) {
+        alumno = objAlumno;
+        siguiente = nullptr;
+    }
+};
+
+int main() {
+    setlocale(LC_ALL, "es_ES.UTF-8");
+
+    Nodo* cabeza = nullptr;
+    Nodo* ultimo = nullptr;
+    char opcion;
+
+    cout << "--- Registro de Alumnos (Lista Enlazada de Objetos) ---" << endl;
+
+    do {
+        cout << "\n--- Ingreso de Datos del Alumno ---" << endl;
+        Alumno nuevoAlumno;
+        nuevoAlumno.leerDatos();
+
+        Nodo* nuevoNodo = new Nodo(nuevoAlumno);
+
+        if (cabeza == nullptr) {
+            cabeza = nuevoNodo;
+            ultimo = nuevoNodo;
+        } else {
+            ultimo->siguiente = nuevoNodo;
+            ultimo = nuevoNodo;
+        }
+
+        cout << "\n¿Desea agregar otro alumno? (S/N): ";
+        cin >> opcion;
+        cin.ignore(10000, '\n');
+
+    } while (opcion == 'S' || opcion == 's');
+
+    cout << "\n==========================================" << endl;
+    cout << "         REPORTE FINAL DE ALUMNOS         " << endl;
+    cout << "==========================================" << endl;
+
+    Nodo* actual = cabeza;
+    while (actual != nullptr) {
+        actual->alumno.mostrarInformacion();
+        actual = actual->siguiente;
+    }
+
+    actual = cabeza;
+    while (actual != nullptr) {
+        Nodo* siguienteNodo = actual->siguiente;
+        delete actual;
+        actual = siguienteNodo;
+    }
+    cabeza = nullptr;
+
+    cout << "\nMemoria dinámica liberada. Programa terminado con éxito." << endl;
+
+    return 0;
+}
