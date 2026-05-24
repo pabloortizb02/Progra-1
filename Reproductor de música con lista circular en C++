@@ -1,0 +1,223 @@
+#include <iostream>
+#include <string>
+#include <termios.h>
+#include <unistd.h>
+
+using namespace std;
+
+struct Cancion {
+    string nombre;
+    string artista;
+    string duracion;
+    Cancion* siguiente;
+    Cancion* anterior;
+};
+
+class Reproductor {
+private:
+    Cancion* primero;
+    Cancion* ultimo;
+    Cancion* cancionActual;
+
+public:
+    Reproductor() {
+        primero = nullptr;
+        ultimo = nullptr;
+        cancionActual = nullptr;
+    }
+
+    void agregarCancion(string nombre, string artista, string duracion) {
+        Cancion* nuevo = new Cancion();
+        nuevo->nombre = nombre;
+        nuevo->artista = artista;
+        nuevo->duracion = duracion;
+
+        if (primero == nullptr) {
+            primero = nuevo;
+            ultimo = nuevo;
+            primero->siguiente = primero;
+            primero->anterior = primero;
+        } else {
+            ultimo->siguiente = nuevo;
+            nuevo->anterior = ultimo;
+            nuevo->siguiente = primero;
+            primero->anterior = nuevo;
+            ultimo = nuevo;
+        }
+        cout << "\n[+] Cancion \"" << nombre << "\" agregada con exito.\n";
+    }
+
+    void mostrarLista() {
+        if (primero == nullptr) {
+            cout << "\n====================================\n";
+            cout << " [!] El reproductor esta vacio. \n";
+            cout << "     Agrega canciones primero.\n";
+            cout << "====================================\n";
+            return;
+        }
+
+        Cancion* actual = primero;
+        cout << "\n====================================\n";
+        cout << "         LISTA DE REPRODUCCION      \n";
+        cout << "====================================\n";
+        int contador = 1;
+        do {
+            cout << contador << ". " << actual->nombre << " - " << actual->artista 
+                 << " (" << actual->duracion << ")\n";
+            actual = actual->siguiente;
+            contador++;
+        } while (actual != primero);
+        cout << "====================================\n";
+    }
+
+    void mostrarPantallaReproduccion() {
+        if (cancionActual == nullptr) {
+            cancionActual = primero;
+        }
+
+        system("clear");
+        cout << "====================================\n";
+        cout << "       REPRODUCIENDO AHORA...       \n";
+        cout << "====================================\n";
+        cout << " Cancion:  " << cancionActual->nombre << "\n";
+        cout << " Artista:  " << cancionActual->artista << "\n";
+        cout << " Duracion: " << cancionActual->duracion << "\n";
+        cout << "====================================\n";
+        cout << "   [<-] Anterior   |   [->] Siguiente \n";
+        cout << "             [ESC] Menu               \n";
+        cout << "====================================\n";
+    }
+
+    void avanzar() {
+        if (cancionActual) cancionActual = cancionActual->siguiente;
+    }
+
+    void retroceder() {
+        if (cancionActual) cancionActual = cancionActual->anterior;
+    }
+    
+    bool estaVacio() {
+        return primero == nullptr;
+    }
+    
+    void resetearReproduccion() {
+        cancionActual = primero;
+    }
+};
+
+int capturarEntradaMac() {
+    struct termios oldt, newt;
+    int ch;
+    tcgetattr(STDIN_FILENO, &oldt);
+    newt = oldt;
+    newt.c_lflag &= ~(ICANON | ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+    
+    ch = getchar();
+    
+    if (ch == 27) { 
+        newt.c_cc[VMIN] = 0;
+        newt.c_cc[VTIME] = 1;
+        tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+        
+        int siguienteChar = getchar();
+        if (siguienteChar == 91) { 
+            ch = getchar(); 
+        } else {
+            ch = 27; 
+        }
+    }
+    
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+    return ch;
+}
+
+void modoReproductor(Reproductor &rep) {
+    if (rep.estaVacio()) {
+        cout << "\n[!] No hay canciones para reproducir. Agrega una primero.\n";
+        cout << "Presiona ENTER para continuar...";
+        cin.get();
+        return;
+    }
+
+    rep.resetearReproduccion();
+    int entrada;
+    do {
+        rep.mostrarPantallaReproduccion();
+        entrada = capturarEntradaMac();
+
+        if (entrada == 67) {       
+            rep.avanzar();
+        } 
+        else if (entrada == 68) {  
+            rep.retroceder();
+        }
+
+    } while (entrada != 27); 
+    
+    system("clear");
+}
+
+int main() {
+    Reproductor miReproductor;
+    int opcion;
+
+    miReproductor.agregarCancion("Lunes 28", "Jose Madero", "4:12");
+    miReproductor.agregarCancion("Disculpa los Malos Pensamientos", "Panda", "3:58");
+    miReproductor.agregarCancion("Plural Siendo Singular", "Jose Madero", "3:30");
+
+    do {
+        cout << "\n====================================\n";
+        cout << "          MENU REPRODUCTOR          \n";
+        cout << "====================================\n";
+        cout << " 1. Agregar cancion\n";
+        cout << " 2. Mostrar lista completa\n";
+        cout << " 3. Reproducir playlist\n";
+        cout << " 4. Salir\n";
+        cout << "====================================\n";
+        cout << " Selecciona una opcion: ";
+        
+        if (!(cin >> opcion)) {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "\n[!] Por favor ingresa un numero valido.\n";
+            continue;
+        }
+        cin.ignore(); 
+
+        switch (opcion) {
+            case 1: {
+                string nombre, artista, duracion;
+                cout << "\n--- AGREGAR NUEVA CANCION ---\n";
+                cout << "Nombre de la cancion: ";
+                getline(cin, nombre);
+                cout << "Artista: ";
+                getline(cin, artista);
+                cout << "Duracion (ej. 3:45): ";
+                getline(cin, duracion);
+                
+                miReproductor.agregarCancion(nombre, artista, duracion);
+                break;
+            }
+            case 2:
+                miReproductor.mostrarLista();
+                cout << "\nPresiona ENTER para continuar...";
+                cin.get();
+                break;
+                
+            case 3:
+                modoReproductor(miReproductor);
+                break;
+                
+            case 4:
+                cout << "\nCerrando el simulador de reproductor. ¡Hasta luego!\n";
+                break;
+                
+            default:
+                cout << "\n[!] Opcion no valida.\n";
+                break;
+        }
+    } while (opcion != 4);
+
+    return 0;
+}
